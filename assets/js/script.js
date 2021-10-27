@@ -1,6 +1,24 @@
  // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var getRandomLower = function() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+};
+
+var getRandomUpper = function() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+};
+
+var getRandomNumber = function() {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+};
+
+var getRandomSpecial = function() {
+    var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+    return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+};
+
+
 var generatePassword = function() {
   var passLength = window.prompt("How many characters would you like your password to contain? Please choose a number equal to or between 8 and 128.");
 
