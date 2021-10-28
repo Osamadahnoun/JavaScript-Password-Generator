@@ -13,9 +13,16 @@ var generatePassword = function() {
   var totalCharacterSet = "";
 
   var initialAlert = window.alert("You've clicked the generate password button! Ahead are a series of questions to help you customize the password to your desire!");
+  
 
   //Password Criteria
   var passLength = window.prompt("How many characters would you like your password to contain? Please choose a number equal to or between 8 and 128.");
+  
+
+ if (passLength < 8 || passLength > 128) {
+    window.alert("You must choose a number between 8 and 128. Please click the generate button to start over :).");
+    return; 
+  } 
 
   var specialCharacters = window.confirm("Click OK to include special characters. Click Cancel to exclude special characters.");
   if (specialCharacters) {
@@ -48,7 +55,6 @@ var generatePassword = function() {
     password += totalCharacterSet[Math.floor(Math.random() * totalCharacterSet.length)]
   }
   return password;
-
 }
 
 // Write password to the #password input
