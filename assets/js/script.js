@@ -1,66 +1,55 @@
- // Assignment Code
+// Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var getRandomLower = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+var characterTypeStrings = {
+  specialCharacters: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+  numericCharacters: "0123456789",
+  lowerCaseCharacters: "abcdefghijklmnopqrstuvwxyz",
+  upperCaseCharacters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 };
-
-var getRandomUpper = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-};
-
-var getRandomNumber = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-};
-
-var getRandomSpecial = function() {
-    var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~"
-    return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-};
-
 
 var generatePassword = function() {
+
+  var totalCharacterSet = "";
+
+  var initialAlert = window.alert("You've clicked the generate password button! Ahead are a series of questions to help you customize the password to your desire!");
+
+  //Password Criteria
   var passLength = window.prompt("How many characters would you like your password to contain? Please choose a number equal to or between 8 and 128.");
 
-  if (passLength >= 8 && passLength <= 128) {
-    var specialCharacters = window.confirm("Click OK to confirm including special characters. Click Cancel to exclude special characters.");
-    if (specialCharacters) {
-      console.log("Ok works 1")
-    }
-    else {
-      console.log("Cancel works 1")
-    };
-    
-    var numericCharacters = window.confirm("Click OK to confirm including numeric characters. Click Cancel to exclude numeric characters.");
-    if (numericCharacters) {
-      console.log("Ok works 2")
-    }
-    else {
-      console.log("Cancel works 2")
-    };
-
-    var lowerCaseCharacters = window.confirm("Click OK to confirm including lowercase characters. Click Cancel to exclude lowercase characters.");
-    if (lowerCaseCharacters) {
-      console.log("Ok works 3")
-    }
-    else {
-      console.log("Cancel works 3")
-    };
-
-    var upperCaseCharacters = window.confirm("Click OK to confirm including uppercase characters. Click Cancel to exclude uppercase characters.");
-    if (upperCaseCharacters) {
-      console.log("Ok works 4")
-    }
-    else {
-      console.log("Cancel works 4")
-    };
-
-  }
-  else {
-    window.alert("Please choose a number equal to or between 8 and 128!");
-    generatePassword();
+  var specialCharacters = window.confirm("Click OK to include special characters. Click Cancel to exclude special characters.");
+  if (specialCharacters) {
+    totalCharacterSet += characterTypeStrings.specialCharacters;
   };
-};
+  
+  var numericCharacters = window.confirm("Click OK to include numeric characters. Click Cancel to exclude numeric characters.");
+  if (numericCharacters) {
+    totalCharacterSet += characterTypeStrings.numericCharacters;
+  };
+
+  var lowerCaseCharacters = window.confirm("Click OK to include lowercase characters. Click Cancel to exclude lowercase characters.");
+  if (lowerCaseCharacters) {
+    totalCharacterSet += characterTypeStrings.lowerCaseCharacters;
+  };
+
+  var upperCaseCharacters = window.confirm("Click OK to include Uppercase characters. Click Cancel to exclude Uppercase characters.");
+  if (upperCaseCharacters) {
+    totalCharacterSet += characterTypeStrings.upperCaseCharacters;
+  };
+
+  if (!specialCharacters + !numericCharacters + !lowerCaseCharacters + !upperCaseCharacters) {
+    window.alert("You must choose at least one type of character. Sorry, you have to start over :(.");
+    generatePassword();
+  }
+
+  //Generate Password
+  var password = "";
+  for (let i = 0; i < passLength; i++) {
+    password += totalCharacterSet[Math.floor(Math.random() * totalCharacterSet.length)]
+  }
+  return password;
+
+}
 
 // Write password to the #password input
 function writePassword() {
