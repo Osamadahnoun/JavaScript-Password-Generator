@@ -21,7 +21,7 @@ var generatePassword = function() {
 
  if (passLength < 8 || passLength > 128) {
     window.alert("You must choose a number between 8 and 128. Please click the generate button to start over :).");
-    return; 
+    return;
   } 
 
   var specialCharacters = window.confirm("Click OK to include special characters. Click Cancel to exclude special characters.");
@@ -49,6 +49,7 @@ var generatePassword = function() {
     generatePassword();
   }
 
+
   //Generate Password
   var password = "";
   for (let i = 0; i < passLength; i++) {
@@ -61,6 +62,7 @@ var generatePassword = function() {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  passwordText.setAttribute("style", "color: #3cb371")
 
   passwordText.value = password;
 
@@ -68,3 +70,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
