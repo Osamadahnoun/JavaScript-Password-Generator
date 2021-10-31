@@ -23,6 +23,7 @@ var generatePassword = function() {
     window.alert("You must choose a number between 8 and 128. Please click the generate button to start over :).");
     return;
   } 
+  
 
   var specialCharacters = window.confirm("Click OK to include special characters. Click Cancel to exclude special characters.");
   if (specialCharacters) {
